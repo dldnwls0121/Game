@@ -1,9 +1,13 @@
+using System;
 using UnityEngine;
 
-public class ability : MonoBehaviour
+public class ability 
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    public ability( )
+    {
+        Debug.Log("능력이 활성화 되었습니다");
+    }
     public int strength = 5;
     void Start()
     {
@@ -11,9 +15,5 @@ public class ability : MonoBehaviour
         Debug.Log("Strength : " +  strength);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
