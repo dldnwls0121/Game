@@ -3,14 +3,14 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
 
-    public ability ability2;
+    [SerializeField] ability ability2;
 
     private void Awake()
     {
         // Awake : 객체가 생성될 때 호출되며, 객체가 비활성화되어 있을 때에도
         // 호출되고, 단 한 번만 호출되는 이벤트 함수
         Debug.Log("Awake");
-        ability2 = new ability();
+        Debug.Log(ability2.Strength);
     }
 
     private void OnEnable()
@@ -42,5 +42,17 @@ public class Monster : MonoBehaviour
     {
         // LateUpdate : 한 프레임의 마지막 단계에서 호출되는 이벤트 함수
         Debug.Log("Late Update");
+    }
+
+    private void OnDisable()
+    {
+        // OnDisable : 객체가 비활성화되었을 때 호출되는 이벤트 함수
+        Debug.Log("OnDisable");
+    }
+
+    private void OnDestroy()
+    {
+        // OnDestory : 객체가 삭제되었을 때 호출되는 이벤트 함수
+        Debug.Log("OnDestory");
     }
 }
