@@ -1,64 +1,50 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : MonoBehaviour 
 {
-    [SerializeField] GameObject[] gameobjects;
+    [SerializeField] Item[] gameobjects;
+
+
+
+    private int j;
     void Start()
     {
 
         for (int i = 0; i < gameobjects.Length; i++)
         {
-            gameobjects[i].SetActive(false);
+            gameobjects[i].transform.gameObject.SetActive(false);
         }
 
-
+        j = gameobjects.Length - 1;
+        gameobjects[0].transform.gameObject.SetActive(false);
+        
     }
 
     void Update()
     {
-        int j = 0;
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+  
+     
+            if (Keyboard.current.spaceKey.wasPressedThisFrame)
+            {
+                Swap();
+   
+            }
+
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (j == 0)
-            {
-                for (int i = 0; i < gameobjects.Length; i++)
-                {
-                    gameobjects[i].SetActive(false);
-                }
-                gameobjects[j].SetActive(true);
-                j++;
-            }
-            else if (j == 1)
-            {
-                for (int i = 0; i < gameobjects.Length; i++)
-                {
-                    gameobjects[i].SetActive(false);
-                }
-                gameobjects[j].SetActive(true);
-                j++;
-            }
-            else if(j == 2)
-            {
-                for (int i = 0; i < gameobjects.Length; i++)
-                {
-                    gameobjects[i].SetActive(false);
-                }
-                gameobjects[j].SetActive(true);
-                j++;
-            }
-            else if(j == 3)
-            {
-                for (int i = 0; i < gameobjects.Length; i++)
-                {
-                    gameobjects[i].SetActive(false);
-                }
-                gameobjects[j].SetActive(true);
-                j = 0;
-            }
-            Debug.Log("스페이스");
+            gameobjects[j].Use();
         }
+
     }
 
+    void Swap()
+    {
+        gameobjects[j].transform.gameObject.SetActive(false);
+        j = (j + 1) % gameobjects.Length;
+        gameobjects[j].transform.gameObject.SetActive(true);
+       
+    }
 
 }
