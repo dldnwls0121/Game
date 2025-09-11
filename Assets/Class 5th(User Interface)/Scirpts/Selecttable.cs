@@ -3,24 +3,25 @@ using UnityEngine.UI;
 public class Selecttable : MonoBehaviour
 {
  
-    private Text text; 
+    [SerializeField] Text text2; 
 
     private void Awake()
     {
-        text = GetComponentInChildren<Text>();
+        text2 = GetComponentInChildren<Text>();
     }
     public void Enterable()
     {
-        text.fontSize = 100; 
+        text2.fontSize = 100; 
+       
     }
 
     public void Exit()
     {
-        text.fontSize = 75; 
+        text2.fontSize = 75; 
     }
 
     public void Down()
     {
-        text.fontSize = 50; 
+        text2.fontSize = 50; 
     }
 }
