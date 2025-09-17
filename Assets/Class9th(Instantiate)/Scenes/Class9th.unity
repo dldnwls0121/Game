@@ -246,8 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1713781036754730, guid: 0f8a471e5537f864ebdb454fe82308eb, type: 3}
-  prefab2: {fileID: 0}
-  count: 6
+  count: 5
   time: 0
 --- !u!4 &337952999
 Transform:

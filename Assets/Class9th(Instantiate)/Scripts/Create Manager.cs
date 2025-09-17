@@ -1,11 +1,10 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
-
+using System.Collections;
 public class CreateManager : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
-    [SerializeField] GameObject prefab2;
+    //[SerializeField] GameObject prefab2;
     [SerializeField] int count;
     List<GameObject> units;
     [SerializeField] float time;
@@ -20,22 +19,47 @@ public class CreateManager : MonoBehaviour
         //prefab2 = Instantiate(prefab,gameObject.transform);
         //prefab2.transform.position = new Vector3(1,0,0);
 
-        for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
         {
             units.Add(Instantiate(prefab, gameObject.transform));
             units[i].SetActive(false);
         }
-       
 
+        StartCoroutine(Coroutine());
     }
 
-    void Update()
+    IEnumerator Coroutine()
     {
-        time += Time.deltaTime;
-
-        if (time >=  5.0f)
+        int size = 0;
+        int random = Random.Range(0, units.Count);
+        while(true)
         {
-            Debug.Log($"{time} 초입니다");
+            yield return new WaitForSeconds(5.0f);
+            if (!units[random].activeSelf)
+            {
+                units[random].SetActive(true);
+                size++;
+            }
+            else
+            {
+                while (units[random].activeSelf)
+                {
+                    random = (random + 1) % units.Count;
+                    
+                }
+                units[random].SetActive(true);
+                size++;
+            }
+
+            if(size == units.Count)
+            {
+                Debug.Log("전부 활성화 중입니다");
+                yield break;
+            }
+           
         }
+ 
+       
+
     }
 }
